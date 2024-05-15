@@ -26,4 +26,19 @@ class MemoryMemberRepository : MemberRepository {
     override fun findAll(): List<Member> {
         return store.values.toList()
     }
+
+    override fun update(id: Long, name: String): Member? {
+        val member = findById(id)
+        if (member != null) {
+            member.name = name
+        }
+        return member
+    }
+
+    override fun delete(id: Long): List<Member> {
+        if (store.containsKey(id)) {
+            store.remove(id)
+        }
+        return findAll()
+    }
 }
