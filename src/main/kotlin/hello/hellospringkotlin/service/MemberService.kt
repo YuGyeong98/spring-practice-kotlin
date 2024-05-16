@@ -1,9 +1,9 @@
 package hello.hellospringkotlin.service
 
 import hello.hellospringkotlin.domain.Member
-import hello.hellospringkotlin.repository.MemoryMemberRepository
+import hello.hellospringkotlin.repository.MemberRepository
 
-class MemberService(private val memberRepository: MemoryMemberRepository) {
+class MemberService(private val memberRepository: MemberRepository) {
 
     /**
      * 회원 가입
