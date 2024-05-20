@@ -1,14 +1,14 @@
 package hello.hellospringkotlin
 
-import hello.hellospringkotlin.repository.JdbcTemplateMemberRepository
+import hello.hellospringkotlin.repository.JpaMemberRepository
 import hello.hellospringkotlin.repository.MemberRepository
 import hello.hellospringkotlin.service.MemberService
+import jakarta.persistence.EntityManager
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import javax.sql.DataSource
 
 @Configuration
-class SpringConfig(private val dataSource: DataSource) {
+class SpringConfig(private val em: EntityManager) {
 
     @Bean
     fun memberService(): MemberService {
@@ -17,6 +17,6 @@ class SpringConfig(private val dataSource: DataSource) {
 
     @Bean
     fun memberRepository(): MemberRepository {
-        return JdbcTemplateMemberRepository(dataSource)
+        return JpaMemberRepository(em)
     }
 }

@@ -2,7 +2,9 @@ package hello.hellospringkotlin.service
 
 import hello.hellospringkotlin.domain.Member
 import hello.hellospringkotlin.repository.MemberRepository
+import org.springframework.transaction.annotation.Transactional
 
+@Transactional
 class MemberService(private val memberRepository: MemberRepository) {
 
     /**
