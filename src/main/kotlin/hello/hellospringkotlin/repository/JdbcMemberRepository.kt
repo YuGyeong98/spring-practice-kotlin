@@ -111,7 +111,7 @@ class JdbcMemberRepository(private val dataSource: DataSource) : MemberRepositor
         }
     }
 
-    override fun update(id: Long, name: String): Member? {
+    override fun update(id: Long, name: String) {
         val sql = "update member set name = ? where id = ?"
 
         var conn: Connection? = null
@@ -124,7 +124,6 @@ class JdbcMemberRepository(private val dataSource: DataSource) : MemberRepositor
             pstmt.setString(1, name)
             pstmt.setLong(2, id)
             pstmt.executeUpdate()
-            return null
         } catch (e: Exception) {
             throw IllegalStateException(e)
         } finally {
@@ -132,7 +131,7 @@ class JdbcMemberRepository(private val dataSource: DataSource) : MemberRepositor
         }
     }
 
-    override fun delete(id: Long): List<Member> {
+    override fun delete(id: Long) {
         val sql = "delete from member where id = ?"
 
         var conn: Connection? = null
@@ -144,7 +143,6 @@ class JdbcMemberRepository(private val dataSource: DataSource) : MemberRepositor
             pstmt = conn.prepareStatement(sql)
             pstmt.setLong(1, id)
             pstmt.executeUpdate()
-            return listOf()
         } catch (e: Exception) {
             throw IllegalStateException(e)
         } finally {

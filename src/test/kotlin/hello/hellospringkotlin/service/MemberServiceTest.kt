@@ -54,9 +54,10 @@ class MemberServiceTest {
         val id = memberService.join(member)
 
         // when
-        val name = memberService.updateMemberName(id, "spring2")
+        memberService.updateMemberName(id, "spring2")
 
         // then
+        val name = memberService.findOne(id)?.name
         assertThat(name).isEqualTo("spring2")
     }
 
@@ -69,9 +70,10 @@ class MemberServiceTest {
         memberService.join(member2)
 
         // when
-        val remainingMembers = memberService.deleteMember(id1)
+        memberService.deleteMember(id1)
 
         // then
-        assertThat(remainingMembers.size).isEqualTo(1)
+        val id = memberService.findOne(id1)
+        assertThat(id).isEqualTo(null)
     }
 }

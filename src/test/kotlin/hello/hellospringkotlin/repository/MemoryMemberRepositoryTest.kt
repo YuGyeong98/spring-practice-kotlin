@@ -51,14 +51,14 @@ class MemoryMemberRepositoryTest {
         val member2 = Member("spring2")
         repository.save(member2)
 
-        val member3 = repository.update(1, "spring3")
-        val member4 = repository.update(2, "spring4")
+        repository.update(1, "spring3")
+        repository.update(2, "spring4")
 
         val result1 = repository.findByName("spring3")
         val result2 = repository.findByName("spring4")
 
-        assertThat(result1).isEqualTo(member3)
-        assertThat(result2).isEqualTo(member4)
+        assertThat(result1?.name).isEqualTo("spring3")
+        assertThat(result2?.name).isEqualTo("spring4")
     }
 
     @Test
@@ -69,7 +69,8 @@ class MemoryMemberRepositoryTest {
         val member2 = Member("spring2")
         repository.save(member2)
 
-        val result = repository.delete(member1.id)
+        repository.delete(member1.id)
+        val result = repository.findAll()
 
         assertThat(result.size).isEqualTo(1)
     }
