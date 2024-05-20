@@ -15,6 +15,11 @@
                 <td th:text="${member.id}"></td>
                 <td th:text="${member.name}"></td>
                 <td>
+                    <form th:action="@{'/members/'+ ${member.id}}" th:method="get">
+                        <button type="submit">수정</button>
+                    </form>
+                </td>
+                <td>
                     <form th:action="@{'/members/'+ ${member.id}}" th:method="delete">
                         <button type="submit">삭제</button>
                     </form>

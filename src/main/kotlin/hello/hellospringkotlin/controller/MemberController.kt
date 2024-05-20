@@ -5,10 +5,7 @@ import hello.hellospringkotlin.service.MemberService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
-import org.springframework.web.bind.annotation.DeleteMapping
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.*
 
 @Controller
 class MemberController(@Autowired private val memberService: MemberService) {
@@ -34,6 +31,18 @@ class MemberController(@Autowired private val memberService: MemberService) {
         model.addAttribute("members", members)
 
         return "members/memberList"
+    }
+
+    @GetMapping("/members/{id}")
+    fun updateForm(@PathVariable("id") id: Long): String {
+        return "members/updateMemberForm"
+    }
+
+    @PutMapping("/members/{id}")
+    fun update(@PathVariable("id") id: Long, @RequestParam("name") name: String, model: Model): String {
+        model.addAllAttributes(mapOf("id" to id, "name" to name))
+        memberService.updateMemberName(id, name)
+        return "redirect:/members"
     }
 
     @DeleteMapping("/members/{id}")
