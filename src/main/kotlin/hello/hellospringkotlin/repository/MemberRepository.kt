@@ -7,6 +7,6 @@ interface MemberRepository {
     fun findById(id: Long): Member?
     fun findByName(name: String): Member?
     fun findAll(): List<Member>
-    fun update(id: Long, name: String)
-    fun delete(id: Long)
+    fun updateNameById(id: Long, name: String)
+    fun deleteById(id: Long)
 }

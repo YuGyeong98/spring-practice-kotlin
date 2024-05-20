@@ -111,7 +111,7 @@ class JdbcMemberRepository(private val dataSource: DataSource) : MemberRepositor
         }
     }
 
-    override fun update(id: Long, name: String) {
+    override fun updateNameById(id: Long, name: String) {
         val sql = "update member set name = ? where id = ?"
 
         var conn: Connection? = null
@@ -131,7 +131,7 @@ class JdbcMemberRepository(private val dataSource: DataSource) : MemberRepositor
         }
     }
 
-    override fun delete(id: Long) {
+    override fun deleteById(id: Long) {
         val sql = "delete from member where id = ?"
 
         var conn: Connection? = null

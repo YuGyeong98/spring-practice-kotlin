@@ -27,14 +27,14 @@ class MemoryMemberRepository : MemberRepository {
         return store.values.toList()
     }
 
-    override fun update(id: Long, name: String) {
+    override fun updateNameById(id: Long, name: String) {
         val member = findById(id)
         if (member != null) {
             member.name = name
         }
     }
 
-    override fun delete(id: Long) {
+    override fun deleteById(id: Long) {
         if (store.containsKey(id)) {
             store.remove(id)
         }

@@ -37,13 +37,13 @@ class MemberService(private val memberRepository: MemberRepository) {
      * 회원 이름 변경
      */
     fun updateMemberName(id: Long, name: String) {
-        memberRepository.update(id, name)
+        memberRepository.updateNameById(id, name)
     }
 
     /**
      * 회원 삭제
      */
     fun deleteMember(id: Long) {
-        memberRepository.delete(id)
+        memberRepository.deleteById(id)
     }
 }

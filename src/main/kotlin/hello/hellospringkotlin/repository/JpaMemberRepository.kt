@@ -27,12 +27,12 @@ class JpaMemberRepository(private val em: EntityManager) : MemberRepository {
             .resultList
     }
 
-    override fun update(id: Long, name: String) {
+    override fun updateNameById(id: Long, name: String) {
         val member = em.find(Member::class.java, id)
         member.name = name
     }
 
-    override fun delete(id: Long) {
+    override fun deleteById(id: Long) {
         val member = em.find(Member::class.java, id)
         em.remove(member)
     }

@@ -37,11 +37,11 @@ class JdbcTemplateMemberRepository(dataSource: DataSource) : MemberRepository {
         return jdbcTemplate.query("select * from member", memberRowMapper())
     }
 
-    override fun update(id: Long, name: String) {
+    override fun updateNameById(id: Long, name: String) {
         jdbcTemplate.update("update member set name = ? where id = ?", name, id)
     }
 
-    override fun delete(id: Long) {
+    override fun deleteById(id: Long) {
         jdbcTemplate.update("delete from member where id = ?", id)
     }
 
