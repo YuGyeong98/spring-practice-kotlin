@@ -1,13 +1,14 @@
 package hello.hellospringkotlin
 
+import hello.hellospringkotlin.repository.JdbcMemberRepository
 import hello.hellospringkotlin.repository.MemberRepository
-import hello.hellospringkotlin.repository.MemoryMemberRepository
 import hello.hellospringkotlin.service.MemberService
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import javax.sql.DataSource
 
 @Configuration
-class SpringConfig {
+class SpringConfig(private val dataSource: DataSource) {
 
     @Bean
     fun memberService(): MemberService {
@@ -16,6 +17,6 @@ class SpringConfig {
 
     @Bean
     fun memberRepository(): MemberRepository {
-        return MemoryMemberRepository()
+        return JdbcMemberRepository(dataSource)
     }
 }
