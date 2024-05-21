@@ -39,8 +39,8 @@ class MemberController(@Autowired private val memberService: MemberService) {
     }
 
     @PutMapping("/members/{id}")
-    fun update(@PathVariable("id") id: Long, @RequestParam("name") name: String, model: Model): String {
-        model.addAllAttributes(mapOf("id" to id, "name" to name))
+    fun update(@PathVariable("id") id: Long, name: String, model: Model): String {
+        model.addAttribute("name", name)
         memberService.updateMemberName(id, name)
         return "redirect:/members"
     }
